@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>工业工程 · 月度工作汇报</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+<style>
+/* ============================================ */
+/* ===== 月度汇报 3 页专属紧凑排版（沿用模板视觉） ===== */
+/* ============================================ */
+
+/* ---------- P01 结论 & 业绩 ---------- */
+#p01{padding:28px 56px 60px}
+#p01 .badge{margin-bottom:10px;padding:3px 12px;font-size:11px}
+#p01 .h1{font-size:54px !important;margin-bottom:8px !important;line-height:1.1 !important}
+#p01 .job-scope-line{margin-top:8px;margin-bottom:4px;padding:10px 18px;font-size:14px;line-height:1.75;border-radius:0 6px 6px 0}
+#p01 .job-scope-line .js-prefix{font-size:12px;letter-spacing:.12em;margin-right:10px;padding-right:10px}
+#p01 .sec-h{margin:16px 0 10px;padding-bottom:6px}
+#p01 .sec-h .sec-no{font-size:18px}
+#p01 .sec-h .sec-zh{font-size:17px}
+#p01 .sec-h .sec-en{font-size:12px}
+#p01 .footer{bottom:14px;font-size:11px}
+
+.stat-grid{display:grid;grid-template-columns:1.08fr 1fr 1fr;gap:14px}
+#p01 .progress-card{padding:14px 18px;border-radius:10px}
+#p01 .progress-card:hover{transform:none;box-shadow:0 6px 16px rgba(60,40,20,.08)}
+#p01 .pc-head{margin-bottom:8px;gap:10px}
+#p01 .pc-tag{font-size:10px;padding:2px 8px}
+#p01 .pc-name{font-size:15px}
+#p01 .pc-main{margin-bottom:10px;padding-bottom:10px}
+#p01 .pc-num{font-size:54px;line-height:.95}
+#p01 .pc-unit{font-size:15px}
+#p01 .pc-period{font-size:11px;padding-bottom:6px}
+#p01 .pc-trends{gap:8px}
+#p01 .trend-item{padding:6px 10px;border-radius:8px}
+#p01 .trend-item .ti-lab{font-size:10px}
+#p01 .trend-item .ti-val{font-size:17px}
+#p01 .trend-item .ti-arr{font-size:12px}
+.progress-card.ene::before{content:"";position:absolute;left:0;top:0;width:100%;height:4px;background:#9DC8A8}
+.progress-card.ene .pc-tag{background:#3F6F4F}
+
+#p01 .idea-grid{max-width:none;margin-bottom:10px;gap:12px}
+#p01 .idea-card{padding:14px 16px 12px;border-radius:10px}
+#p01 .idea-card:hover{transform:none;box-shadow:0 6px 16px rgba(60,40,20,.08)}
+#p01 .idea-no{font-size:26px;margin-bottom:6px}
+#p01 .idea-tit{font-size:16px}
+#p01 .idea-en{font-size:11.5px;margin-bottom:8px;padding-bottom:6px}
+#p01 .idea-desc{font-size:11.8px;line-height:1.72}
+
+#p01 .core-focus{padding:10px 18px;margin:8px 0 0;border-radius:10px;gap:14px}
+#p01 .core-focus::before{width:4px}
+#p01 .core-focus .cf-label{font-size:11.5px;letter-spacing:.14em;padding-right:14px}
+#p01 .core-focus .cf-body{font-size:12.8px;line-height:1.6}
+#p01 .core-focus .hl-y{background:var(--hl-yellow)!important;background-image:none!important;color:var(--ink)!important;padding:1px 8px!important;border-radius:3px;display:inline-block;font-weight:700}
+
+/* ---------- P02 关键业务案例 ---------- */
+#p02{padding:24px 48px 52px}
+#p02 .h1{font-size:40px !important;margin-bottom:6px !important;line-height:1.08 !important}
+#p02 .badge{margin-bottom:6px;font-size:10.5px;padding:3px 10px}
+#p02 .sec-h{margin:12px 0 8px;padding-bottom:5px}
+#p02 .sec-h .sec-no{font-size:17px}
+#p02 .sec-h .sec-zh{font-size:16px}
+#p02 .sec-h .sec-en{font-size:11.5px}
+#p02 .footer{bottom:12px;font-size:10.5px}
+
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+.case-grid .ind-col{height:auto;padding:9px 13px}
+.case-grid .ind-desc{font-size:11.5px;line-height:1.55;padding:4px 9px;margin-bottom:7px;color:var(--ink)}
+.case-grid .ind-card{margin-bottom:7px;padding:7px 11px}
+.case-grid .ind-card:last-child{margin-bottom:0}
+.case-grid .ind-list li{font-size:11.2px;line-height:1.68;padding:3px 0;grid-template-columns:50px 1fr}
+.case-grid .ind-list li span b{font-size:11.2px}
+.case-grid .ind-t{font-size:12.5px}
+
+.opp-box{display:flex;gap:10px;background:var(--bg);border-radius:6px;padding:6px 10px;margin-bottom:8px;border-left:3px solid #B25E40}
+.opp-lab{font-family:"Inter",sans-serif;font-size:10px;letter-spacing:.1em;font-weight:700;color:#B25E40;flex-shrink:0;padding-top:3px}
+.opp-text p{font-size:11px;line-height:1.62;color:var(--ink-soft)}
+.opp-text p+p{margin-top:3px}
+.opp-text b{color:var(--ink);font-weight:700}
+
+.act-lab{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;font-size:12.5px;font-weight:800;color:var(--ink);margin:0 0 6px;padding-bottom:4px;border-bottom:1px dashed var(--line-soft)}
+.act-lab em{font-style:normal;font-size:10.5px;font-weight:400;color:var(--ink-mute)}
+.act-lab .gain{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:700;font-size:13px;color:#2F7A39;margin-left:auto}
+
+.asset-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:2px}
+.asset-card{background:var(--paper);border:1px solid var(--line-soft);border-radius:10px;padding:10px 14px}
+.asset-h{display:flex;align-items:center;gap:8px;padding-bottom:5px;margin-bottom:7px;border-bottom:1px solid var(--ink)}
+.asset-no{font-family:"Noto Serif SC",serif;font-weight:900;font-size:16px;color:var(--ink);background:var(--hl-yellow);padding:0 9px;border-radius:4px;line-height:1.3}
+.asset-card:nth-child(2) .asset-no{background:var(--hl-pink)}
+.asset-t{font-size:14.5px;font-weight:800;color:var(--ink)}
+.asset-en{margin-left:auto;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:11.5px;color:var(--ink-mute)}
+.asset-lead{font-size:11.5px;line-height:1.7;color:var(--ink-soft);margin-bottom:7px}
+.asset-lead b{color:var(--ink);font-weight:700}
+.asset-points{list-style:none;padding:0;margin:0 0 7px;display:grid;grid-template-columns:1fr 1fr;gap:2px 14px}
+.asset-points li{font-size:11px;line-height:1.6;color:var(--ink-soft);padding-left:12px;position:relative}
+.asset-points li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--hl-pink);position:absolute;left:0;top:7px}
+.asset-points.one-col{grid-template-columns:1fr}
+.asset-value{font-size:11px;line-height:1.68;color:var(--ink-soft);padding:6px 10px;background:var(--bg);border-radius:6px;border-left:3px solid var(--hl-yellow);margin-bottom:7px}
+.asset-value b{color:var(--ink);font-weight:700}
+.asset-value:last-child{margin-bottom:0}
+.path-flow{display:flex;flex-wrap:wrap;align-items:center;gap:5px;background:var(--accent-dark);border-radius:6px;padding:7px 10px}
+.pf-lab{font-family:"Inter",sans-serif;font-size:9.5px;letter-spacing:.1em;color:var(--hl-yellow);font-weight:700;padding-right:8px;border-right:1px solid rgba(217,210,190,.3);margin-right:2px}
+.pf-step{font-size:10.5px;color:#E6E0CE;background:rgba(255,255,255,.09);padding:2px 8px;border-radius:3px;white-space:nowrap}
+.pf-arr{color:var(--hl-yellow);font-size:11px}
+
+/* ---------- P03 AI 拓客 + 试用期重点 ---------- */
+#p03{padding:24px 48px 52px}
+#p03 .h1{font-size:40px !important;margin-bottom:6px !important}
+#p03 .sec-h{margin:12px 0 8px;padding-bottom:5px}
+#p03 .sec-h .sec-no{font-size:17px}
+#p03 .sec-h .sec-zh{font-size:16px}
+#p03 .sec-h .sec-en{font-size:11.5px}
+#p03 .core-focus{flex-direction:column;align-items:flex-start;gap:6px;padding:9px 16px;margin:6px 0 10px}
+#p03 .core-focus .cf-label{border-right:none;padding-right:0}
+#p03 .core-focus .cf-body{font-size:12.8px;line-height:1.6}
+#p03 .core-focus .cf-note{font-size:11.5px;line-height:1.6;color:#D9D2BE;padding-top:5px;border-top:1px dashed rgba(217,210,190,.28);width:100%}
+#p03 .core-focus .cf-note b{color:#fff;font-weight:600}
+
+.funnel-bar{display:flex;align-items:stretch;gap:5px;margin-bottom:7px}
+.fn-step{flex:1;display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 4px;border-radius:6px;background:var(--paper);border:1px solid var(--line-soft)}
+.fn-step.on{background:var(--hl-yellow);border-color:#B8A52E}
+.fn-step.off{border-style:dashed;opacity:.6}
+.fn-no{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:700;font-size:12px;color:var(--ink-mute);line-height:1}
+.fn-zh{font-size:11.5px;font-weight:700;color:var(--ink)}
+.fn-st{font-family:"Inter",sans-serif;font-size:9px;color:var(--ink-soft);letter-spacing:.04em}
+.funnel-note{font-size:11.5px;line-height:1.65;color:var(--ink-soft);margin-bottom:8px}
+.funnel-note b{color:var(--ink);font-weight:700}
+
+.route-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.route-grid .ind-card{margin-bottom:0;padding:8px 12px;background:var(--paper)}
+.route-grid .ind-list li{font-size:11.2px;line-height:1.68;padding:3px 0;grid-template-columns:52px 1fr}
+.route-grid .ind-list li span b{font-size:11.2px}
+.route-grid .ind-t{font-size:13px}
+
+#p03 .insight-grid.three{grid-template-columns:repeat(3,1fr)}
+#p03 .insight-grid.three .ins-q{font-size:13px}
+#p03 .insight-grid.three .ins-body{font-size:11.2px;line-height:1.68}
+#p03 .num-lines{list-style:none;padding:0;margin:0}
+#p03 .num-lines li{display:grid;grid-template-columns:16px 1fr;gap:6px;padding:3px 0;font-size:11.2px;line-height:1.68;color:var(--ink-soft)}
+#p03 .num-lines li:not(:last-child){border-bottom:1px dashed rgba(217,210,190,.55)}
+#p03 .num-lines li i{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:700;color:var(--ink-mute)}
+#p03 .num-lines li b{color:var(--ink);font-weight:700}
+
+.prob-main{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--accent-dark);color:#E6E0CE;border-radius:8px;padding:8px 14px;margin-bottom:8px;position:relative;overflow:hidden;border-left:4px solid var(--hl-yellow)}
+.prob-tag{font-family:"Inter",sans-serif;font-size:10px;letter-spacing:.1em;color:var(--hl-yellow);font-weight:700;padding-right:10px;border-right:1px solid rgba(217,210,190,.3);flex-shrink:0}
+.prob-text{font-size:12.8px;line-height:1.55;flex:1}
+.prob-text b{color:#fff;font-weight:700}
+.prob-text .hl-y{background:var(--hl-yellow)!important;background-image:none!important;color:var(--ink)!important;padding:1px 8px!important;border-radius:3px!important;display:inline-block;font-weight:700}
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.prob-card{background:var(--paper);border:1px solid var(--line-soft);border-radius:8px;padding:9px 13px;border-top:3px solid var(--hl-pink)}
+.prob-card:nth-child(2){border-top-color:var(--hl-yellow)}
+.prob-card:nth-child(3){border-top-color:#9DC8A8}
+.prob-h{font-size:13px;font-weight:800;color:var(--ink);margin-bottom:5px;display:flex;align-items:center;gap:6px}
+.prob-h i{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:700;font-size:14px;color:var(--ink-mute)}
+.prob-b{font-size:11.2px;line-height:1.7;color:var(--ink-soft)}
+.prob-b b{color:var(--ink);font-weight:700}
+#p03 .footer{bottom:12px;font-size:10.5px}
+
+@media (max-width:1000px){
+  .stat-grid,.case-grid,.asset-grid,.route-grid,.prob-grid,#p03 .insight-grid.three{grid-template-columns:1fr}
+  .funnel-bar{flex-wrap:wrap}
+  .fn-step{flex:1 1 30%}
+  .asset-points{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ P01 结论 & 业绩情况 ============ -->
+<section class="page" id="p01">
+  <div class="top-bar">
+    <div class="brand"><b>Sandy</b><span class="dot">•</span>工业工程 · 月度工作汇报</div>
+    <div class="pager"><span class="cur">01</span><span class="sep">·</span>02<span class="sep">·</span>03</div>
+  </div>
+
+  <span class="badge">结论 &amp; 业绩情况 <span class="en">· Conclusion &amp; Performance</span></span>
+  <h2 class="h1">月度工作<span class="hl-block-p">汇报</span><span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink-mute);font-weight:400">.</span></h2>
+
+  <p class="job-scope-line">
+    <span class="js-prefix">结论</span>
+    自 <b>7 月</b>正式接手<b>工业工程行业</b>以来，我已能<b>较为独立应对销售和运营工作</b>。
+  </p>
+
+  <h3 class="sec-h"><span class="sec-no">01</span><span class="sec-zh">业绩情况</span><span class="sec-en">Last Month · Daily Spend</span></h3>
+  <div class="stat-grid">
+    <div class="progress-card exh">
+      <div class="pc-head">
+        <span class="pc-tag">INDUSTRIAL</span>
+        <span class="pc-name">工业工程</span>
+      </div>
+      <div class="pc-main">
+        <div class="pc-num">36<span class="pc-unit">w/d</span></div>
+        <div class="pc-period">近一个月日均消耗</div>
+      </div>
+      <div class="pc-trends">
+        <div class="trend-item up"><span class="ti-lab">增量</span><span class="ti-val">+3w/d</span><span class="ti-arr">▲</span></div>
+        <div class="trend-item up"><span class="ti-lab">环比</span><span class="ti-val">+9%</span><span class="ti-arr">▲</span></div>
+      </div>
+    </div>
+
+    <div class="progress-card ind">
+      <div class="pc-head">
+        <span class="pc-tag">ELECTRONICS</span>
+        <span class="pc-name">电子和机械设备</span>
+      </div>
+      <div class="pc-main">
+        <div class="pc-num">+2.3<span class="pc-unit">w/d</span></div>
+        <div class="pc-period">主要增长来源</div>
+      </div>
+      <div class="pc-trends">
+        <div class="trend-item up"><span class="ti-lab">环比</span><span class="ti-val">+10%</span><span class="ti-arr">▲</span></div>
+      </div>
+    </div>
+
+    <div class="progress-card ene">
+      <div class="pc-head">
+        <span class="pc-tag">ENERGY</span>
+        <span class="pc-name">能源生产供应</span>
+      </div>
+      <div class="pc-main">
+        <div class="pc-num">+0.9<span class="pc-unit">w/d</span></div>
+        <div class="pc-period">主要增长来源</div>
+      </div>
+      <div class="pc-trends">
+        <div class="trend-item up"><span class="ti-lab">环比</span><span class="ti-val">+36%</span><span class="ti-arr">▲</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec-h"><span class="sec-no">02</span><span class="sec-zh">本月工作主要取得三方面进展</span><span class="sec-en">Three Progresses</span></h3>
+  <div class="idea-grid">
+    <div class="idea-card">
+      <div class="idea-no">01</div>
+      <div class="idea-tit">日常工作独立承接</div>
+      <div class="idea-en">Daily Ops</div>
+      <p class="idea-desc">
+        能够<b>较为独立地</b>承接<span class="hl-y">客户问题答疑、投放诊断、产品应用及跨团队协同</span>等日常工作。
+      </p>
+    </div>
+    <div class="idea-card">
+      <div class="idea-no">02</div>
+      <div class="idea-tit">重点赛道客户落地</div>
+      <div class="idea-en">Key Tracks &amp; Operation</div>
+      <p class="idea-desc">
+        围绕重点赛道推进<b>客户落地和行业化运营</b>。在<b>电子和机械设备</b>赛道，结合 WAIC 等重要节点挖掘客户预算，推动机器人品牌客户投放，并沉淀品牌投放规划；在<b>能源生产供应</b>赛道，围绕光伏客户推进拓客、投放、运营优化和行业解决方案建设，沉淀闭环经验。
+      </p>
+    </div>
+    <div class="idea-card">
+      <div class="idea-no">03</div>
+      <div class="idea-tit">AI 拓客专项</div>
+      <div class="idea-en">AI Lead-Gen</div>
+      <p class="idea-desc">
+        开展 AI 拓客专项，探索<b>腰尾客户的批量线索获取和触达</b>。目前已完成一定规模的线索储备和初步外呼验证，但整体仍处于<span class="hl-y">链路验证阶段</span>，尚未形成从有效线索、客户意向到开户投放的稳定转化。
+      </p>
+    </div>
+  </div>
+
+  <div class="core-focus">
+    <span class="cf-label">整体来看 · Overall</span>
+    <p class="cf-body">
+      我能较为独立地处理<b>「销售 + 运营」事务</b>，并在<b>重点客户推进、行业方案沉淀和业务增长</b>方面取得了初步正向结果。下一阶段需要重点提升<span class="hl-y">行业全局判断</span>、<b>专项目标落地</b>，同时验证 <b>AI 拓客从线索获取到开户投放的完整链路</b>。
+    </p>
+  </div>
+
+  <div class="footer"><span>01 / 结论 &amp; 业绩情况 · Conclusion &amp; Performance</span><span class="en-foot">01 / 03</span></div>
+</section>
+
+<!-- ============ P02 两个关键业务案例 + 方法资产沉淀 ============ -->
+<section class="page" id="p02">
+  <div class="top-bar">
+    <div class="brand"><b>Sandy</b><span class="dot">•</span>工业工程 · 月度工作汇报</div>
+    <div class="pager">01<span class="sep">·</span><span class="cur">02</span><span class="sep">·</span>03</div>
+  </div>
+
+  <span class="badge">两个关键业务案例 + 方法和资产沉淀 <span class="en">· Key Cases &amp; Assets</span></span>
+  <h2 class="h1">两个关键<span class="hl-block-p">业务案例</span><span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink-mute);font-weight:400">.</span></h2>
+
+  <div class="case-grid">
+    <!-- A 电子和机械设备 -->
+    <div class="ind-col">
+      <div class="ind-head">
+        <span class="ind-tag">A</span>
+        <span class="ind-zh">电子和机械设备</span>
+        <span class="ind-aim">Node → Budget</span>
+      </div>
+      <div class="ind-desc">把<b>行业节点 &amp; 机会</b>转化为<b>客户预算</b></div>
+
+      <div class="opp-box">
+        <span class="opp-lab">机会</span>
+        <div class="opp-text">
+          <p>7 月出现<b>节点型营销机会</b>，WAIC 人工智能行业大会期间，芯片相关科技企业集中释放品宣预算。</p>
+          <p>同时，<b>机器人赛道</b>正处于品牌建设和市场教育阶段，具备进一步拓展品牌 &amp; 竞价广告预算的空间。</p>
+        </div>
+      </div>
+
+      <div class="act-lab">动作 &amp; 结果 <em>本月主要围绕两个方向开展工作</em></div>
+
+      <div class="ind-card">
+        <div class="ind-card-h">
+          <span class="ind-no">①</span>
+          <span class="ind-t">结合 WAIC 行业节点挖掘客户预算</span>
+          <span class="td4-st done">+3w/d</span>
+        </div>
+        <ul class="ind-list">
+          <li><b>动作</b><span>结合 WAIC 这一重要行业节点，<b>提前摸排</b>可能释放预算的客户</span></li>
+          <li><b>结果</b><span>推动<b>海光芯片、大裂谷智能</b>互选投放 <b>+3w/d</b></span></li>
+        </ul>
+      </div>
+
+      <div class="ind-card">
+        <div class="ind-card-h">
+          <span class="ind-no">②</span>
+          <span class="ind-t">机器人赛道客户拓展与投放承接</span>
+          <span class="td4-st doing">样板成型</span>
+        </div>
+        <ul class="ind-list">
+          <li><b>打法</b><span>围绕机器人赛道持续开展客户拓展和投放承接，<b>行业打法已形成初步样板</b>，正在积累规模化复制经验</span></li>
+          <li><b>Sharpa</b><span>针对客户的品牌投放需求，从<b>开户、广告版位、素材形式、投放周期、人群定向到投放执行</b>提供完整指引，并联动微广共同推动 <b>150w 合约</b>落地；过程中进一步整理了机器人品牌投放的关键维度：投放时间线、版位选择、人群标签、定向策略、素材清单和执行分工</span></li>
+          <li><b>在拓展</b><span><b>世航机器人、Xmov魔珐科技</b>等客户仍在持续拓展中</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- B 能源生产供应 -->
+    <div class="ind-col">
+      <div class="ind-head">
+        <span class="ind-tag tag-d">B</span>
+        <span class="ind-zh">能源生产供应</span>
+        <span class="ind-aim">Refined Operation</span>
+      </div>
+      <div class="ind-desc">建立<b>光伏客户</b>的<b>精细化运营链路</b></div>
+
+      <div class="opp-box" style="border-left-color:#3F6F4F">
+        <span class="opp-lab" style="color:#3F6F4F">机会</span>
+        <div class="opp-text">
+          <p>光伏客户类型较多，既包括<b>品牌型客户</b>，也包括面向<b>家庭、别墅和工商业场景</b>的线索投放客户。因此，光伏行业的增长机会不仅来自客户数量拓展，也来自对<b>客户场景、人群和投放方式</b>进行更精细的拆分。</p>
+        </div>
+      </div>
+
+      <div class="act-lab">动作 &amp; 结果 <em>推进「拓客—运营—复盘优化」闭环业务链路</em><span class="gain">+0.9w/d · 环比 +36%</span></div>
+
+      <div class="ind-card">
+        <div class="ind-card-h"><span class="ind-no">①</span><span class="ind-t">拓客端</span><span class="td4-st done">已引入</span></div>
+        <ul class="ind-list">
+          <li><b>动作</b><span>引入<b>晶科能源</b>等品牌客户、<b>好商汇</b>等光伏聚合客户</span></li>
+        </ul>
+      </div>
+
+      <div class="ind-card">
+        <div class="ind-card-h"><span class="ind-no">②</span><span class="ind-t">运营端</span><span class="td4-st doing">进行中</span></div>
+        <ul class="ind-list">
+          <li><b>优化</b><span>协助<b>晶焱日之源</b>等客户优化创意和投放设置，并结合<b>光伏与别墅场景</b>挖掘相关目标人群，尝试配置<b>分人群出价</b></span></li>
+          <li><b>方案</b><span>根据不同业务场景，整理<b>家庭光伏、别墅光伏</b>等细分解决方案</span></li>
+        </ul>
+      </div>
+
+      <div class="ind-card">
+        <div class="ind-card-h"><span class="ind-no">③</span><span class="ind-t">复盘优化</span><span class="td4-st done">已产出</span></div>
+        <ul class="ind-list">
+          <li><b>产出</b><span>针对光伏广告中常见的<b>资质、文案和素材审核</b>问题，产出<b>光伏投放自检工具</b>，帮助客户在投放前完成基础检查</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec-h"><span class="sec-no">03</span><span class="sec-zh">方法和资产沉淀</span><span class="sec-en">Methodology &amp; Assets</span></h3>
+  <div class="asset-grid">
+    <div class="asset-card">
+      <div class="asset-h">
+        <span class="asset-no">1</span>
+        <span class="asset-t">品牌投放方案</span>
+        <span class="asset-en">Brand Playbook</span>
+      </div>
+      <p class="asset-lead">基于 <b>Sharpa 机器人项目</b>，初步整理出品牌客户品牌投放<b>核心要点</b>，包括：</p>
+      <ul class="asset-points">
+        <li>投放目标和时间线</li>
+        <li>广告版位及产品选择</li>
+        <li>目标人群和标签组合</li>
+        <li>素材规格、内容方向和素材清单</li>
+        <li>投放执行及跨团队协同分工</li>
+      </ul>
+      <div class="asset-value">该方案的主要价值，是将品牌客户相对模糊的<b>“品牌宣传需求”</b>，转化为<b>可以具体执行的投放规划</b>。</div>
+      <div class="asset-value" style="border-left-color:#B25E40">后续计划通过<b>世航机器人、晶科能源</b>等客户继续验证和补充，将当前的项目经验逐步沉淀为<b>成熟的工业工程品牌投放策略</b>。</div>
+    </div>
+
+    <div class="asset-card">
+      <div class="asset-h">
+        <span class="asset-no">2</span>
+        <span class="asset-t">光伏行业解决方案</span>
+        <span class="asset-en">PV Solution</span>
+      </div>
+      <p class="asset-lead">跑通了从<b>客户拓展、投放承接、运营优化到问题复盘</b>的完整服务链路。</p>
+      <ul class="asset-points one-col">
+        <li>在<b>客户拓展及投放承接</b>阶段，推进晶焱日之源、晶科能源等客户完成投放落地；</li>
+        <li>在<b>运营</b>阶段，围绕客户的创意、定向和出价设置提供优化建议，并挖掘光伏与别墅等相关人群，进行分人群出价；</li>
+        <li>在<b>投放过程</b>中，针对客户常见的素材、文案和审核问题，提供规则答疑和前置检查支持。</li>
+      </ul>
+      <div class="asset-value">通过上述实践，目前已初步形成一套<b>光伏服务客户的运营路径</b>：</div>
+      <div class="path-flow">
+        <span class="pf-lab">运营路径</span>
+        <span class="pf-step">客户拓展</span><span class="pf-arr">→</span>
+        <span class="pf-step">需求判断</span><span class="pf-arr">→</span>
+        <span class="pf-step">投放落地</span><span class="pf-arr">→</span>
+        <span class="pf-step">运营优化</span><span class="pf-arr">→</span>
+        <span class="pf-step">问题处理</span><span class="pf-arr">→</span>
+        <span class="pf-step">复盘提升</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer"><span>02 / 关键业务案例 · 方法和资产沉淀</span><span class="en-foot">02 / 03</span></div>
+</section>
+
+<!-- ============ P03 AI 拓客专项 + 试用期重点 ============ -->
+<section class="page" id="p03">
+  <div class="top-bar">
+    <div class="brand"><b>Sandy</b><span class="dot">•</span>工业工程 · 月度工作汇报</div>
+    <div class="pager">01<span class="sep">·</span>02<span class="sep">·</span><span class="cur">03</span></div>
+  </div>
+
+  <span class="badge">AI 拓客专项 + 试用期重点 <span class="en">· AI Lead-Gen &amp; Probation Focus</span></span>
+  <h2 class="h1"><span class="hl-block-p">AI 拓客</span>专项 &amp; <span class="hl-block-y">试用期重点</span><span style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink-mute);font-weight:400">.</span></h2>
+
+  <div class="core-focus">
+    <span class="cf-label">目标 · Goal</span>
+    <p class="cf-body">
+      利用 AI 完成<b>腰尾客户的批量识别和触达</b>，跑通 <span class="hl-y">AI 线索抓取 - 外呼 - 加微 - 开户 - 投放</span>闭环，在<b>控制人力投入</b>的情况下扩大潜在客户覆盖范围。
+    </p>
+    <p class="cf-note">
+      AI 拓客并不是独立项目，而是<b>“拓品—拓客—开户—投放—结案”</b>完整链路中的<b>前端环节</b>。最终价值不应只看获取了多少名单，而应看<b>能否形成有效商机、开户和实际投放</b>。
+    </p>
+  </div>
+
+  <h3 class="sec-h"><span class="sec-no">01</span><span class="sec-zh">当前漏斗</span><span class="sec-en">Funnel Status</span></h3>
+  <div class="funnel-bar">
+    <div class="fn-step on"><span class="fn-no">01</span><span class="fn-zh">线索获取</span><span class="fn-st">进行中</span></div>
+    <div class="fn-step on"><span class="fn-no">02</span><span class="fn-zh">线索筛选</span><span class="fn-st">进行中</span></div>
+    <div class="fn-step on"><span class="fn-no">03</span><span class="fn-zh">初步触达</span><span class="fn-st">进行中</span></div>
+    <div class="fn-step off"><span class="fn-no">04</span><span class="fn-zh">有效意向</span><span class="fn-st">暂无稳定数据</span></div>
+    <div class="fn-step off"><span class="fn-no">05</span><span class="fn-zh">开户</span><span class="fn-st">暂无稳定数据</span></div>
+    <div class="fn-step off"><span class="fn-no">06</span><span class="fn-zh">投放</span><span class="fn-st">暂无稳定数据</span></div>
+  </div>
+  <p class="funnel-note">当前阶段进行到：<b>线索获取 → 线索筛选 → 初步触达</b>，有效意向、开户和投放等后续环节尚未形成稳定数据。目前专项主要通过<b>妙拓</b>和<b>渠道</b>两条路径推进。</p>
+
+  <div class="route-grid">
+    <div class="ind-card">
+      <div class="ind-card-h"><span class="ind-no">①</span><span class="ind-t">妙拓路径</span><span class="td4-st doing">验证中</span></div>
+      <ul class="ind-list">
+        <li><b>会展</b><span>已爬取并确认首批外呼线索 <b>600+ 条</b></span></li>
+        <li><b>工业</b><span>结合 <b>WAIC 客户名单</b>，筛选出与商服行业相匹配的潜在客户 <b>50+ 家</b>，已开展部分外呼和网络销售触达，但由于样本量较小，目前<b>尚未形成明确的正向转化案例</b></span></li>
+      </ul>
+    </div>
+    <div class="ind-card">
+      <div class="ind-card-h"><span class="ind-no">②</span><span class="ind-t">渠道路径</span><span class="td4-st done">并行方案</span></div>
+      <ul class="ind-list">
+        <li><b>原因</b><span>由于妙拓在线索外呼环节出现<b>系统 Bug</b>，增加渠道外呼作为并行方案</span></li>
+        <li><b>会展</b><span>已从<b>抖音、招聘平台、企查查和垂直平台</b>等渠道收集线索，预计储备外呼线索 <b>1 万+ 条</b></span></li>
+        <li><b>工业</b><span>计划待会展行业先完成链路验证后，再复制开展</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sec-h"><span class="sec-no">02</span><span class="sec-zh">已验证内容 · 当前卡点 · 后续计划</span><span class="sec-en">Validated · Blockers · Next</span></h3>
+  <div class="insight-grid three">
+    <div class="ins-card">
+      <div class="ins-head"><span class="ins-no">01</span><span class="ins-q">已验证内容</span></div>
+      <div class="ins-body">
+        <ul class="num-lines">
+          <li><i>①</i><span>利用<b>公开平台</b>，可以较低成本地<b>批量获取行业客户名单</b>，扩大腰尾客户的覆盖范围。</span></li>
+          <li><i>②</i><span>AI 拓客能否成立，取决于<b>线索准确性、触达成功率、客户意向</b>以及<b>后续销售承接能力</b>。</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ins-card">
+      <div class="ins-head"><span class="ins-no">02</span><span class="ins-q">当前卡点</span></div>
+      <div class="ins-body">
+        <ul class="num-lines">
+          <li><i>①</i><span><b>技术稳定性不足</b>：妙拓外呼环节出现 Bug，影响了原计划的推进节奏；</span></li>
+          <li><i>②</i><span><b>样本量和转化数据不足</b>：工业工程目前仅筛选和触达 50+ 家客户，尚不足以判断整体转化效率；</span></li>
+          <li><i>③</i><span><b>后链路尚未跑通</b>：当前重点仍在线索获取和触达阶段，尚未验证从意向客户到开户、投放和消耗的完整链路。</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ins-card">
+      <div class="ins-head"><span class="ins-no">03</span><span class="ins-q">后续计划</span></div>
+      <div class="ins-body">
+        <p class="ins-lead">优先跑通<b>一批可追踪的完整样本</b>。</p>
+        <p>先在<b>会展行业</b>完成首轮验证，再根据<b>有效线索率、触达率、意向率和投放转化率</b>，判断是否<b>复制到工业工程</b>。</p>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sec-h"><span class="sec-no">03</span><span class="sec-zh">试用期重点</span><span class="sec-en">Probation Focus</span></h3>
+  <div class="prob-main">
+    <span class="prob-tag">业绩考核</span>
+    <span class="prob-text">配合直客销售达成工业工程赛道 <span class="hl-y">Q3 业绩 36w/d</span>（同比<b>+33%</b>，环比 <b>+9%</b>）</span>
+  </div>
+  <div class="prob-grid">
+    <div class="prob-card">
+      <div class="prob-h"><i>①</i>聚合孵化</div>
+      <p class="prob-b"><b>机械 / 光伏</b>分别孵化 <b>1-2 家</b>日耗从 <b>0 到 5k+</b> 客户，并对外输出标杆案例；</p>
+    </div>
+    <div class="prob-card">
+      <div class="prob-h"><i>②</i>品牌探索</div>
+      <p class="prob-b">梳理<b>机器人 / 光伏 / 芯片</b>等赛道产业链 <b>100 强名单</b>，挖掘品牌投放需求并输出案例；</p>
+    </div>
+    <div class="prob-card">
+      <div class="prob-h"><i>③</i>直购复制</div>
+      <p class="prob-b">搭建<b>选品工作台</b>，分<b>机械 / 化工 / 安防</b>类目选品，输出工业直购投放建议定期更新。</p>
+    </div>
+  </div>
+
+  <div class="footer"><span>03 / AI 拓客专项 · 试用期重点</span><span class="en-foot">03 / 03</span></div>
+</section>
+
+</body>
+</html>
